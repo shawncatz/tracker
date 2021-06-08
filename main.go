@@ -15,31 +15,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-import (
-	"github.com/docopt/docopt-go"
-	"github.com/sirupsen/logrus"
-)
+
+import "github.com/shawncatz/tracker/cmd"
 
 func main() {
-	usage := `Tracker
-
-Usage:
-  tracker setup
-  tracker new <name>
-  tracker remove <name>
-  tracker add <name> <value>
-  tracker list <name>
-  tracker -h | --help
-  tracker --version
-
-Options:
-  -h --help			Show this screen.
-  --version			Show version.
-`
-	args, err := docopt.ParseDoc(usage)
-	if err != nil {
-		logrus.Errorf("error: %s", err)
-	}
-
-	logrus.Debugf("args: %#v", args)
+	cmd.Execute()
 }
