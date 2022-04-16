@@ -22,6 +22,10 @@ type Track struct {
 	Created time.Time
 }
 
+func (t *Track) Count() int {
+	return len(t.Entries)
+}
+
 func NewTracker(directory string) (*Tracker, error) {
 	tr := &Tracker{Directory: directory, Tracks: map[string]*Track{}}
 	files, err := ioutil.ReadDir(tr.Directory)

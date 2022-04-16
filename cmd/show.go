@@ -26,7 +26,7 @@ import (
 
 // showCmd represents the show command
 var showCmd = &cobra.Command{
-	Use:   "show",
+	Use:   "show <track>",
 	Short: "show contents of track",
 	Long:  "show contents of track",
 	Args:  cobra.ExactArgs(1),

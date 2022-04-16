@@ -26,7 +26,7 @@ import (
 
 // addCmd represents the add command
 var addCmd = &cobra.Command{
-	Use:   "add",
+	Use:   "add <track> <text>...",
 	Short: "add am entry to the named track",
 	Long:  "add am entry to the named track",
 	Args:  cobra.MinimumNArgs(2),

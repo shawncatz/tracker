@@ -42,7 +42,7 @@ var listCmd = &cobra.Command{
 
 		fmt.Println("Tracks:")
 		for n, t := range tracker.Tracks {
-			fmt.Printf("  - %s\t%s\n", n, t.Updated)
+			fmt.Printf("  - %s\t%d\t%s\n", n, t.Count(), t.Updated)
 		}
 	},
 }

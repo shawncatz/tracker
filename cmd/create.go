@@ -22,41 +22,39 @@ import (
 	"github.com/shawncatz/tracker/track"
 )
 
-// clearCmd represents the clear command
-var clearCmd = &cobra.Command{
-	Use:   "clear <track>",
-	Short: "clear entries from track",
-	Long:  "clear entries from track",
+// createCmd represents the add command
+var createCmd = &cobra.Command{
+	Use:   "create <name>",
+	Short: "create new track",
+	Long:  "create new track",
+	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		name := args[0]
+
 		tracker, err := track.NewTracker(cfg.Directory)
 		if err != nil {
 			logrus.Errorf("error loading tracker %s", err)
 		}
 
 		if tracker.Tracks[name] == nil {
-			logrus.Errorf("error loading track %s: %s", name, err)
-			return
-		}
-
-		tracker.Tracks[name].Entries = []string{}
-		err = tracker.Save(name)
-		if err != nil {
-			logrus.Errorf("error saving track %s: %s", name, err)
+			err = tracker.NewTrack(name)
+			if err != nil {
+				logrus.Errorf("error creating track %s: %s", name, err)
+			}
 		}
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(clearCmd)
+	rootCmd.AddCommand(createCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// clearCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// addCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// clearCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// addCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
