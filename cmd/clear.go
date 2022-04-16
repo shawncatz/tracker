@@ -27,6 +27,7 @@ var clearCmd = &cobra.Command{
 	Use:   "clear <track>",
 	Short: "clear entries from track",
 	Long:  "clear entries from track",
+	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		name := args[0]
 		tracker, err := track.NewTracker(cfg.Directory)
