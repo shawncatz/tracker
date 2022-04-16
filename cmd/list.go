@@ -17,6 +17,7 @@ limitations under the License.
 */
 import (
 	"fmt"
+	"sort"
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -40,9 +41,17 @@ var listCmd = &cobra.Command{
 			return
 		}
 
+		// sort keys
+		keys := make([]string, 0, len(tracker.Tracks))
+		for k := range tracker.Tracks {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+
 		fmt.Println("Tracks:")
-		for n, t := range tracker.Tracks {
-			fmt.Printf("  - %s\t%d\t%s\n", n, t.Count(), t.Updated)
+		for _, k := range keys {
+			t := tracker.Tracks[k]
+			fmt.Printf("  - %s\t%d\t%s\n", k, t.Count(), t.Updated)
 		}
 	},
 }
