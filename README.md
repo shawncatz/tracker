@@ -1,6 +1,6 @@
 # Tracker
 
-It's kind of stupid... just let's you save things from the command line
+It's kind of stupid... just lets you save things from the command line
 into a file and list them back out... mostly just something silly for me
 to work on in my spare time.
 
@@ -25,14 +25,14 @@ Create a config from the defaults and ensure the directory exists
 
 List all tracks
 
-> tracker add <name>
+> tracker add [name] [text]
 
 Create a new track with the given name
 
-> tracker show <name>
+> tracker show [name]
 
 Display the entries in the track
 
-> tracker clear <name>
+> tracker clear [name]
 
 Remove the entries in the track
